@@ -1,17 +1,9 @@
-import request from '../utils/request.js'
+import $http from '../utils/request.js'
 
 export function ex_get(query) {
-  return request({
-    url: '/testapi',
-    method: 'get',
-    params: query
-  })
+  return $http.get('/api/user', query)
 }
 
 export function ex_post(data) {
-  return request({
-    url: '/testapi',
-    method: 'post',
-    data: data
-  })
+  return $http.post('/postapi', data)
 }
