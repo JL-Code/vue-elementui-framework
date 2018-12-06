@@ -9,7 +9,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 export default () => {
-  return new VueRouter({
+  const router = new VueRouter({
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
       if(savedPosition)
@@ -32,4 +32,19 @@ export default () => {
       }
     ]
   })
+
+  // 注册全局守卫，在进入页面之前验证是否存在token
+  router.beforeEach((to, from, next) => {
+    if(to.meta.requireAuth && sessionStorage.getItem('token')) {
+      if(to.path === '/login') {
+        next()
+      } else {
+        next('/login')
+      }
+    } else {
+      next()
+    }
+  })
+
+  return router
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import Vue from 'vue'
 
 const instance = axios.create({
   baseURL: 'http://localhost:4041',
@@ -8,6 +7,11 @@ const instance = axios.create({
 
 // 配置请求拦截器
 instance.interceptors.request.use(config => {
+  // token在登录成功后返回并存储在sessionStorage中，
+  // 在每一次发起请求前把token添加到请求头。
+  if(sessionStorage.getItem('token')) {
+    instance.defaults.headers.common['Authorization'] = sessionStorage.getItem('token')
+  }
   return config
 }, (error) => {
   return Promise.reject(error)
@@ -36,9 +40,6 @@ const $axios = {
     })
   }
 }
-
-// 绑定axios实例到vue原型，方便全局调用
-// Vue.prototype.$axios = instance
 
 export default $axios
 

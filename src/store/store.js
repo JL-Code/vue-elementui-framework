@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default () => {
   return new Vuex.Store({
-    
+    state: {
+      token: null
+    }
   })
 }
