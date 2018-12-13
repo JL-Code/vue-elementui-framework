@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const ExtractPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const isDev = process.env.Node_ENV === 'development'
 
@@ -97,14 +98,14 @@ if(isDev) {
     vendor: ['vue', 'vue-router', 'vuex']
   }
   config.optimization = {
-    splitChunks: { 
-      cacheGroups: { 
-        commons: { 
+    splitChunks: {
+      cacheGroups: {
+        commons: {
           name: "vendor",
           chunks: "initial",
-          minChunks: 2 
-        } 
-      } 
+          minChunks: 2
+        }
+      }
     },
     runtimeChunk: {
       name: 'runtime'
@@ -136,7 +137,11 @@ if(isDev) {
     }
   )
   config.plugins.push(
-    new ExtractPlugin('styles.[hash:8].css'),
+    new CleanWebpackPlugin(['dist/'], { root: __dirname, exclude:['web.config'], verbose: true, dry: false }),
+    new ExtractPlugin({
+      filename: 'styles.[hash:8].css',
+      allChunks: true
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash:8].css',
       chunkFilename: '[id].[chunkhash:8].css'
