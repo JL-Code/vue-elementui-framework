@@ -44,7 +44,7 @@ const config = merge(baseConfig, {
   devServer,
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    // new webpack.NoEmitOnErrorsPlugin()
   ]
 })
 

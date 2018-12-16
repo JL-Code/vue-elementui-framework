@@ -9,21 +9,25 @@ const config = merge(baseConfig, {
   mode: 'production',
   entry: {
     app: path.join(__dirname, '../src/index.js'),
-    vendor: ['vue', 'vue-router', 'vuex']
+    // vendor: ['vue', 'vue-router', 'vuex']
   },
   optimization: {
+    // splitChunks: {
+    //   cacheGroups: {
+    //     commons: {
+    //       name: "vendor",
+    //       chunks: "initial",
+    //       minChunks: 2
+    //     }
+    //   }
+    // },
+    // runtimeChunk: {
+    //   name: 'runtime'
+    // }
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2
-        }
-      }
+      chunks: 'all'
     },
-    runtimeChunk: {
-      name: 'runtime'
-    }
+    runtimeChunk: true
   },
   output: {
     filename: '[name].[chunkhash:8].js'
