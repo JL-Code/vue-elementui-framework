@@ -59,7 +59,7 @@ const config = merge(baseConfig, {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/'], { root: __dirname, exclude:['web.config'], verbose: true, dry: false }),
+    new CleanWebpackPlugin(['../dist'], { root: __dirname, exclude:['web.config'], verbose: true, dry: false }),
     new ExtractPlugin({
       filename: 'styles.[hash:8].css',
       allChunks: true

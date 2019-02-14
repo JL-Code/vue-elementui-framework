@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
 
 const devServer = {
-  port: 4042,
+  port: 5500,
   host: '0.0.0.0',
   overlay: {
     errors: true
@@ -11,7 +11,8 @@ const devServer = {
   historyApiFallback: {
     index: '../index.html'
   },
-  hot: true
+  hot: true,
+  disableHostCheck: true
 }
 
 const config = merge(baseConfig, {
@@ -45,7 +46,13 @@ const config = merge(baseConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.js',
+      jquery: 'jquery'
+    }
+  }
 })
 
 module.exports = config

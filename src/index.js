@@ -1,3 +1,4 @@
+import "@babel/polyfill"
 import Vue from 'vue'
 import App from './app.vue'
 import CreateVueRouter from './router/router.js'
@@ -11,5 +12,5 @@ Vue.use(ElementUI)
 new Vue({
   render: h => h(App),
   router: CreateVueRouter(),
-  store: CrateStore()
+  store: CrateStore(),
 }).$mount('#root')

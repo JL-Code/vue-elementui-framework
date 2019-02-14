@@ -7,6 +7,9 @@
     <label>{{ type }}</label>
     <label>{{ isAdmin }}</label>
   </div>
+  <el-button
+          type="primary"
+        >发起审批</el-button>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ export default {
   methods: {
     getUser() {
       const _vue = this
-      ex_get({ userGuid: '9A3FA9BF-BDCD-E811-80D2-848AE3185301' }).then(function(response) {
+      ex_get({ userGuid: '68D5333D-F106-4A45-9A5B-61589DA05FFD' }).then(function(response) {
         const user = response.data
         _vue.name = user.UserName
         _vue.type = user.UserType

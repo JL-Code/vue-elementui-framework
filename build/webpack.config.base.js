@@ -2,6 +2,10 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 const config = {
   target: 'web',
   entry: path.join(__dirname, '../src/index.js'),
@@ -18,8 +22,8 @@ const config = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: __dirname + 'node_modules',
-        include: __dirname + 'src'
+        exclude: resolve('node_modules'),
+        include: resolve('src')
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
